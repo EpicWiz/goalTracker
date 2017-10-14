@@ -67,6 +67,17 @@ class AddGoal extends Component {
       borderBottom: '2px solid #FFFFFF',
       fontFamily: 'Mallanna, sans-serif'
     };
+    const textAreaStyle = {
+      width: '100%',
+      backgroundColor: 'white',
+      color: 'black',
+      borderTop: 'none',
+      borderLeft: 'none',
+      borderRight: 'none',
+      borderBottom: '2px solid #FFFFFF',
+      borderRadius: '3px',
+      fontFamily: 'Mallanna, sans-serif'
+    }
 
     const buttonStyle = {
       display: 'block',
@@ -88,7 +99,7 @@ class AddGoal extends Component {
         </div>
         <div className="form-group">
           <label htmlFor="goalBody" style={labelStyle}>Goal Info</label>
-          <input type="text" id="goalBody" name="goalBody" placeholder="Goal Info" style={inputStyle} value={this.state.goalBody} onChange={this.handleInputChange} required />
+          <textarea type="text" id="goalBody" name="goalBody" placeholder="Goal Info" style={textAreaStyle} value={this.state.goalBody} onChange={this.handleInputChange} required />
         </div>
         <div className="form-group">
           <label htmlFor="progress" style={labelStyle}>Progress</label>

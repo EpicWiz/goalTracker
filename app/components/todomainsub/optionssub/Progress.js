@@ -73,6 +73,17 @@ class Progress extends Component {
           borderBottom: '2px solid #FFFFFF',
           fontFamily: 'Mallanna, sans-serif'
         };
+        const textAreaStyle = {
+          width: '100%',
+          backgroundColor: 'white',
+          color: 'black',
+          borderTop: 'none',
+          borderLeft: 'none',
+          borderRight: 'none',
+          borderBottom: '2px solid #FFFFFF',
+          borderRadius: '3px',
+          fontFamily: 'Mallanna, sans-serif'
+        }
         const buttonStyle = {
           display: 'block',
           margin: '15px auto',
@@ -99,7 +110,7 @@ class Progress extends Component {
         </div>
         <div className="form-group">
           <label htmlFor="progressBody" style={labelStyle}>Entry</label>
-          <input type="text" id="progressBody" name="progressBody" placeholder="Details" style={inputStyle} value={this.state.progressBody} onChange={this.handleInputChange} required />
+          <textarea type="text" id="progressBody" name="progressBody" placeholder="Details" style={textAreaStyle} value={this.state.progressBody} onChange={this.handleInputChange} required />
         </div>
         <button type="submit" className="btn btn-success" style={buttonStyle} onClick={this.addProgress}>Submit</button>
       </form>

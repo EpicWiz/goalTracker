@@ -29750,6 +29750,17 @@ var AddGoal = function (_Component) {
         borderBottom: '2px solid #FFFFFF',
         fontFamily: 'Mallanna, sans-serif'
       };
+      var textAreaStyle = {
+        width: '100%',
+        backgroundColor: 'white',
+        color: 'black',
+        borderTop: 'none',
+        borderLeft: 'none',
+        borderRight: 'none',
+        borderBottom: '2px solid #FFFFFF',
+        borderRadius: '3px',
+        fontFamily: 'Mallanna, sans-serif'
+      };
 
       var buttonStyle = {
         display: 'block',
@@ -29786,7 +29797,7 @@ var AddGoal = function (_Component) {
               { htmlFor: 'goalBody', style: labelStyle },
               'Goal Info'
             ),
-            _react2.default.createElement('input', { type: 'text', id: 'goalBody', name: 'goalBody', placeholder: 'Goal Info', style: inputStyle, value: this.state.goalBody, onChange: this.handleInputChange, required: true })
+            _react2.default.createElement('textarea', { type: 'text', id: 'goalBody', name: 'goalBody', placeholder: 'Goal Info', style: textAreaStyle, value: this.state.goalBody, onChange: this.handleInputChange, required: true })
           ),
           _react2.default.createElement(
             'div',
@@ -29991,6 +30002,17 @@ var Progress = function (_Component) {
         borderBottom: '2px solid #FFFFFF',
         fontFamily: 'Mallanna, sans-serif'
       };
+      var textAreaStyle = {
+        width: '100%',
+        backgroundColor: 'white',
+        color: 'black',
+        borderTop: 'none',
+        borderLeft: 'none',
+        borderRight: 'none',
+        borderBottom: '2px solid #FFFFFF',
+        borderRadius: '3px',
+        fontFamily: 'Mallanna, sans-serif'
+      };
       var buttonStyle = {
         display: 'block',
         margin: '15px auto',
@@ -30050,7 +30072,7 @@ var Progress = function (_Component) {
               { htmlFor: 'progressBody', style: labelStyle },
               'Entry'
             ),
-            _react2.default.createElement('input', { type: 'text', id: 'progressBody', name: 'progressBody', placeholder: 'Details', style: inputStyle, value: this.state.progressBody, onChange: this.handleInputChange, required: true })
+            _react2.default.createElement('textarea', { type: 'text', id: 'progressBody', name: 'progressBody', placeholder: 'Details', style: textAreaStyle, value: this.state.progressBody, onChange: this.handleInputChange, required: true })
           ),
           _react2.default.createElement(
             'button',
