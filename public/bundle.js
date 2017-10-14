@@ -29444,7 +29444,7 @@ var TodoMain = function (_Component) {
       };
 
       var logoutStyle = {
-        marginTop: '10px',
+        margin: '20px',
         fontFamily: 'Mallanna, sans-serif',
         boxShadow: '3px 3px 15px black'
       };
@@ -29493,7 +29493,7 @@ var TodoMain = function (_Component) {
               null,
               _react2.default.createElement(
                 'button',
-                { className: 'btn btn-success btn-sm', type: 'submit', style: logoutStyle, onClick: this.logOut },
+                { className: 'btn btn-success btn-lg', type: 'submit', style: logoutStyle, onClick: this.logOut },
                 'Logout'
               )
             )
@@ -30415,7 +30415,8 @@ var Tasks = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _deleteButtonStyle,
+          _this4 = this;
 
       var progress = this.props.data.progress;
 
@@ -30464,22 +30465,20 @@ var Tasks = function (_Component) {
         left: '15px'
       }, 'border', '1px solid black');
 
-      var deleteButtonStyle = _defineProperty({
+      var deleteButtonStyle = (_deleteButtonStyle = {
         border: '1px solid #FFFFFF',
         color: '#FFFFFF',
-        padding: '1px 5px',
+        padding: '0px 5px 0px 5px',
         fontSize: '12px',
-        fontFamily: 'Mallanna, sans-serif',
-        position: 'relative',
-        left: '15px'
-      }, 'border', '1px solid black');
+        fontFamily: 'Mallanna, sans-serif'
+      }, _defineProperty(_deleteButtonStyle, 'border', '1px solid black'), _defineProperty(_deleteButtonStyle, 'float', 'right'), _defineProperty(_deleteButtonStyle, 'margin', '10px'), _deleteButtonStyle);
 
       var linkStyle = {
         color: '#000000'
       };
 
       var subLinkStyle = {
-        color: '#000000',
+        color: 'white',
         fontFamily: 'Mallanna, sans-serif',
         fontSize: '15px'
       };
@@ -30488,6 +30487,9 @@ var Tasks = function (_Component) {
         color: '#808080',
         fontFamily: 'Mallanna, sans-serif',
         fontSize: '15px'
+      };
+      var cardStyle = {
+        backgroundColor: '#2ecc71'
       };
 
       return _react2.default.createElement(
@@ -30521,7 +30523,7 @@ var Tasks = function (_Component) {
                   _react2.default.createElement(
                     'div',
                     { className: 'progress' },
-                    _react2.default.createElement('div', { className: 'progress-bar progress-bar-striped progress-bar-animated bg-warning', role: 'progressbar', 'aria-valuenow': '75', 'aria-valuemin': '0', 'aria-valuemax': '100', style: progStyle })
+                    _react2.default.createElement('div', { className: 'progress-bar progress-bar-striped progress-bar-animated bg-success', role: 'progressbar', 'aria-valuenow': '75', 'aria-valuemin': '0', 'aria-valuemax': '100', style: progStyle })
                   )
                 )
               )
@@ -30543,7 +30545,7 @@ var Tasks = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              { className: 'card' },
+              { className: 'card', style: cardStyle },
               _react2.default.createElement(
                 'div',
                 { className: 'text-center', role: 'tab' },
@@ -30553,7 +30555,11 @@ var Tasks = function (_Component) {
                   _react2.default.createElement(
                     'a',
                     { 'data-toggle': 'collapse', href: hrefTarget2, 'aria-expanded': 'true', 'aria-controls': id2, style: subLinkStyle },
-                    'Progress'
+                    _react2.default.createElement(
+                      'h4',
+                      null,
+                      'Progress'
+                    )
                   )
                 )
               ),
@@ -30582,7 +30588,7 @@ var Tasks = function (_Component) {
                   _react2.default.createElement(
                     'button',
                     { className: 'btn btn-danger btn-sm', style: deleteButtonStyle, onClick: this.deleteGoals },
-                    'x'
+                    'Deal Goal'
                   )
                 )
               )
@@ -30678,7 +30684,7 @@ var Tasks = function (_Component) {
                       ),
                       _react2.default.createElement(
                         'button',
-                        { type: 'submit', className: 'btn btn-warning btn-sm', onClick: this.compileFormData, style: buttonStyle },
+                        { type: 'submit', className: 'btn btn-success btn-sm', onClick: this.compileFormData, style: buttonStyle },
                         '\u2713'
                       )
                     )
@@ -30772,6 +30778,10 @@ var Progcard = function (_Component) {
         left: '15px'
       }, 'border', '1px solid black');
 
+      var progCardStyle = {
+        backgroundColor: '#2ecc7'
+      };
+
       return _react2.default.createElement(
         'li',
         { className: 'list-group-item' },
@@ -30780,7 +30790,7 @@ var Progcard = function (_Component) {
           { className: 'card' },
           _react2.default.createElement(
             'div',
-            { className: 'card-header' },
+            { className: 'card-header', style: progCardStyle },
             _react2.default.createElement(
               'div',
               { className: 'row' },
@@ -30800,7 +30810,7 @@ var Progcard = function (_Component) {
                 _react2.default.createElement(
                   'button',
                   { className: 'btn btn-danger btn-sm', style: buttonStyle, onClick: this.deleteProg },
-                  'x'
+                  'Delete Entry'
                 )
               )
             )

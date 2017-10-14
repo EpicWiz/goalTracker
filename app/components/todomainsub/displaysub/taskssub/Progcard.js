@@ -41,10 +41,14 @@ class Progcard extends Component {
       border: '1px solid black'
     };
 
+    const progCardStyle = {
+      backgroundColor: '#2ecc7',
+    }
+  
     return (
       <li className="list-group-item">
         <div className="card">
-        <div className="card-header">
+        <div className="card-header" style={progCardStyle}>
           <div className="row">
             <div className="col-sm-4 text-center">
               {this.props.data.progressTitle}
@@ -53,7 +57,7 @@ class Progcard extends Component {
               {dateReplace}
             </div>
             <div className="col-sm-4 text-center">
-              <button className="btn btn-danger btn-sm" style={buttonStyle} onClick={this.deleteProg}>x</button>
+              <button className="btn btn-danger btn-sm" style={buttonStyle} onClick={this.deleteProg}>Delete Entry</button>
             </div>
           </div>
         </div>

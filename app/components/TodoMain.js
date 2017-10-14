@@ -147,7 +147,7 @@ export default class TodoMain extends Component {
     };
 
     const logoutStyle = {
-      marginTop: '10px',
+      margin: '20px',
       fontFamily: 'Mallanna, sans-serif',
       boxShadow: '3px 3px 15px black'
     };
@@ -180,7 +180,7 @@ export default class TodoMain extends Component {
         </div>
         <div className="row"><div className="col-sm-12 text-center">
         <form>
-          <button className="btn btn-success btn-sm" type="submit" style={logoutStyle} onClick={this.logOut}>Logout</button>
+          <button className="btn btn-success btn-lg" type="submit" style={logoutStyle} onClick={this.logOut}>Logout</button>
         </form>
         </div>
         </div>
