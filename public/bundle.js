@@ -30261,7 +30261,7 @@ var Display = function (_Component) {
               )
             ),
             this.state.tasks.map(function (e, i) {
-              return _react2.default.createElement(_Tasks2.default, { key: i, data: e, updateTask: _this2.props.updateTask });
+              return _react2.default.createElement(_Tasks2.default, { key: i, data: e, updateTask: _this2.props.updateTask, getTasks: _this2.props.getTasks });
             })
           )
         )
@@ -30329,6 +30329,7 @@ var Tasks = function (_Component) {
     _this.handleInputChange = _this.handleInputChange.bind(_this);
     _this.compileFormData = _this.compileFormData.bind(_this);
     _this.getProgs = _this.getProgs.bind(_this);
+    _this.deleteGoals = _this.deleteGoals.bind(_this);
     return _this;
   }
 
@@ -30394,9 +30395,27 @@ var Tasks = function (_Component) {
       });
     }
   }, {
+    key: 'deleteGoals',
+    value: function deleteGoals() {
+      var _this3 = this;
+
+      fetch('/api/deleteGoals/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ goalID: this.state.goalID }),
+        credentials: 'same-origin'
+      }).then(function (data) {
+        _this3.props.getTasks();
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var progress = this.props.data.progress;
 
@@ -30439,6 +30458,16 @@ var Tasks = function (_Component) {
         border: '1px solid #FFFFFF',
         color: '#32CD32',
         padding: '2px 5px',
+        fontSize: '12px',
+        fontFamily: 'Mallanna, sans-serif',
+        position: 'relative',
+        left: '15px'
+      }, 'border', '1px solid black');
+
+      var deleteButtonStyle = _defineProperty({
+        border: '1px solid #FFFFFF',
+        color: '#FFFFFF',
+        padding: '1px 5px',
         fontSize: '12px',
         fontFamily: 'Mallanna, sans-serif',
         position: 'relative',
@@ -30535,7 +30564,7 @@ var Tasks = function (_Component) {
                   'ul',
                   { className: 'list-group' },
                   this.state.progList.map(function (e, i) {
-                    return _react2.default.createElement(_Progcard2.default, { key: i, data: e, getProgs: _this3.getProgs });
+                    return _react2.default.createElement(_Progcard2.default, { key: i, data: e, getProgs: _this4.getProgs });
                   })
                 )
               )
@@ -30549,7 +30578,12 @@ var Tasks = function (_Component) {
                 _react2.default.createElement(
                   'a',
                   { 'data-toggle': 'collapse', href: hrefTarget3, 'aria-expanded': 'true', 'aria-controls': id3, style: subLinkStyleGoal },
-                  'Goal Settings'
+                  'Goal Settings ',
+                  _react2.default.createElement(
+                    'button',
+                    { className: 'btn btn-danger btn-sm', style: deleteButtonStyle, onClick: this.deleteGoals },
+                    'x'
+                  )
                 )
               )
             ),

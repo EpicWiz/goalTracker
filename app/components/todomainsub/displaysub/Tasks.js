@@ -23,6 +23,7 @@ class Tasks extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.compileFormData = this.compileFormData.bind(this);
     this.getProgs = this.getProgs.bind(this);
+    this.deleteGoals = this.deleteGoals.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,6 +67,21 @@ class Tasks extends Component {
       this.setState({
         progList: json.progs
       });
+    })
+    .catch(error => console.log(error));
+  }
+
+  deleteGoals() {
+    fetch('/api/deleteGoals/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({goalID: this.state.goalID}),
+      credentials: 'same-origin',
+    })
+    .then(data => {
+      this.props.getTasks();
     })
     .catch(error => console.log(error));
   }
@@ -118,6 +134,17 @@ class Tasks extends Component {
       border: '1px solid black'
     };
 
+    const deleteButtonStyle = {
+      border: '1px solid #FFFFFF',
+      color: '#FFFFFF',
+      padding: '1px 5px',
+      fontSize: '12px',
+      fontFamily: 'Mallanna, sans-serif',
+      position: 'relative',
+      left: '15px',
+      border: '1px solid black'
+    };
+
     const linkStyle = {
       color: '#000000'
     };
@@ -160,9 +187,6 @@ class Tasks extends Component {
 
         <div className="card-body"><strong>Goal Details:</strong> {this.props.data.goalBody}</div>
 
-
-
-          {/*Miranda, start here*/}
           <div className="card">
             <div className="text-center" role="tab">
               <h5 className="mb-0">
@@ -171,20 +195,17 @@ class Tasks extends Component {
                 </a>
               </h5>
             </div>
-
             <div id={id2} className="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
               <ul className="list-group">
                 {this.state.progList.map((e, i) => <Progcard key={i} data={e} getProgs={this.getProgs} />)}
               </ul>
             </div>
           </div>
-          {/*End here*/}
-
 
             <div className="text-left" role="tab">
               <h5 className="mb-0">
                 <a data-toggle="collapse" href={hrefTarget3} aria-expanded="true" aria-controls={id3} style={subLinkStyleGoal}>
-                  Goal Settings
+                  Goal Settings <button className="btn btn-danger btn-sm" style={deleteButtonStyle} onClick={this.deleteGoals}>x</button>
                 </a>
               </h5>
             </div>

@@ -39,6 +39,17 @@ app.post('/api/updateGoal', function(request, response) {
       .catch(error => console.error(error));
 });
 
+app.post('/api/deleteGoals', function(request, response) {
+  Goals.remove({ _id: request.body.goalID })
+  .then(data => {
+    Progress.remove({mainGoalId: request.body.goalID});
+  })
+  .then(data => {
+    response.send(true);
+  })
+  .catch(error => console.error(error));
+});
+
 app.post('/api/addProgress', function(request, response) {
   new Progress({
     mainGoalId: request.body.goalID,

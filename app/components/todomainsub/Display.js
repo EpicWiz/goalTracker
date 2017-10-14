@@ -57,7 +57,7 @@ componentWillReceiveProps(nextProps) {
                 </span>
               </span>
             </li>
-            {this.state.tasks.map((e, i) => <Tasks key={i} data={e} updateTask={this.props.updateTask} />)}
+            {this.state.tasks.map((e, i) => <Tasks key={i} data={e} updateTask={this.props.updateTask} getTasks={this.props.getTasks}/>)}
           </ul>
         </div>
       </div>
