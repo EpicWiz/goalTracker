@@ -209,7 +209,7 @@ class Tasks extends Component {
             <div className="text-left" role="tab">
               <h5 className="mb-0">
                 <a data-toggle="collapse" href={hrefTarget3} aria-expanded="true" aria-controls={id3} style={subLinkStyleGoal}>
-                  Goal Settings <button className="btn btn-danger btn-sm" style={deleteButtonStyle} onClick={this.deleteGoals}>Deal Goal</button>
+                  Goal Settings <button className="btn btn-danger btn-sm" style={deleteButtonStyle} onClick={this.deleteGoals}>Delete Goal</button>
                 </a>
               </h5>
             </div>

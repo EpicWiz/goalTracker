@@ -30588,7 +30588,7 @@ var Tasks = function (_Component) {
                   _react2.default.createElement(
                     'button',
                     { className: 'btn btn-danger btn-sm', style: deleteButtonStyle, onClick: this.deleteGoals },
-                    'Deal Goal'
+                    'Delete Goal'
                   )
                 )
               )
