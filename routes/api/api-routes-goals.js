@@ -57,5 +57,13 @@ app.post('/api/getProgs', function(request, response) {
   .catch(error => console.error(error));
 });
 
+app.post('/api/deleteProgs', function(request, response) {
+  Progress.remove({ _id: request.body._id })
+  .then(data => {
+    response.send(true);
+  })
+  .catch(error => console.error(error));
+});
+
 
 };

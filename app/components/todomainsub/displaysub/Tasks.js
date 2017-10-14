@@ -68,7 +68,6 @@ class Tasks extends Component {
       });
     })
     .catch(error => console.log(error));
-
   }
 
   render() {
@@ -175,7 +174,7 @@ class Tasks extends Component {
 
             <div id={id2} className="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
               <ul className="list-group">
-                {this.state.progList.map((e, i) => <Progcard key={i} data={e} />)}
+                {this.state.progList.map((e, i) => <Progcard key={i} data={e} getProgs={this.getProgs} />)}
               </ul>
             </div>
           </div>

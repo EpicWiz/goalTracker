@@ -2,6 +2,30 @@ import React, { Component } from 'react';
 
 class Progcard extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+
+    this.deleteProg = this.deleteProg.bind(this);
+  }
+
+  deleteProg() {
+
+    fetch('/api/deleteProgs/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({_id: this.props.data._id}),
+      credentials: 'same-origin',
+    })
+    .then(data => {
+      this.props.getProgs();
+    })
+    .catch(error => console.log(error));
+
+  }
+
   render() {
     const dateToString = this.props.data.dateCreate + '';
     const dateReplace = dateToString.slice(0, 10);
@@ -29,7 +53,7 @@ class Progcard extends Component {
               {dateReplace}
             </div>
             <div className="col-sm-4 text-center">
-              <button className="btn btn-danger btn-sm" style={buttonStyle}>x</button>
+              <button className="btn btn-danger btn-sm" style={buttonStyle} onClick={this.deleteProg}>x</button>
             </div>
           </div>
         </div>

@@ -4373,7 +4373,7 @@ var _TodoMain = __webpack_require__(130);
 
 var _TodoMain2 = _interopRequireDefault(_TodoMain);
 
-var _Signup = __webpack_require__(137);
+var _Signup = __webpack_require__(138);
 
 var _Signup2 = _interopRequireDefault(_Signup);
 
@@ -30291,7 +30291,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Progcard = __webpack_require__(138);
+var _Progcard = __webpack_require__(137);
 
 var _Progcard2 = _interopRequireDefault(_Progcard);
 
@@ -30396,6 +30396,8 @@ var Tasks = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       var progress = this.props.data.progress;
 
       var x = progress + '%';
@@ -30533,7 +30535,7 @@ var Tasks = function (_Component) {
                   'ul',
                   { className: 'list-group' },
                   this.state.progList.map(function (e, i) {
-                    return _react2.default.createElement(_Progcard2.default, { key: i, data: e });
+                    return _react2.default.createElement(_Progcard2.default, { key: i, data: e, getProgs: _this3.getProgs });
                   })
                 )
               )
@@ -30663,6 +30665,137 @@ exports.default = Tasks;
 
 /***/ }),
 /* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Progcard = function (_Component) {
+  _inherits(Progcard, _Component);
+
+  function Progcard(props) {
+    _classCallCheck(this, Progcard);
+
+    var _this = _possibleConstructorReturn(this, (Progcard.__proto__ || Object.getPrototypeOf(Progcard)).call(this, props));
+
+    _this.state = {};
+
+    _this.deleteProg = _this.deleteProg.bind(_this);
+    return _this;
+  }
+
+  _createClass(Progcard, [{
+    key: 'deleteProg',
+    value: function deleteProg() {
+      var _this2 = this;
+
+      fetch('/api/deleteProgs/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ _id: this.props.data._id }),
+        credentials: 'same-origin'
+      }).then(function (data) {
+        _this2.props.getProgs();
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var dateToString = this.props.data.dateCreate + '';
+      var dateReplace = dateToString.slice(0, 10);
+
+      var buttonStyle = _defineProperty({
+        border: '1px solid #FFFFFF',
+        color: '#FFFFFF',
+        padding: '1px 5px',
+        fontSize: '12px',
+        fontFamily: 'Mallanna, sans-serif',
+        position: 'relative',
+        left: '15px'
+      }, 'border', '1px solid black');
+
+      return _react2.default.createElement(
+        'li',
+        { className: 'list-group-item' },
+        _react2.default.createElement(
+          'div',
+          { className: 'card' },
+          _react2.default.createElement(
+            'div',
+            { className: 'card-header' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col-sm-4 text-center' },
+                this.props.data.progressTitle
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-sm-4 text-center' },
+                dateReplace
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-sm-4 text-center' },
+                _react2.default.createElement(
+                  'button',
+                  { className: 'btn btn-danger btn-sm', style: buttonStyle, onClick: this.deleteProg },
+                  'x'
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'card-body' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col-sm-12 text-left' },
+                this.props.data.progressBody
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Progcard;
+}(_react.Component);
+
+exports.default = Progcard;
+
+/***/ }),
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30914,114 +31047,6 @@ var Signup = function (_Component) {
 }(_react.Component);
 
 exports.default = Signup;
-
-/***/ }),
-/* 138 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Progcard = function (_Component) {
-  _inherits(Progcard, _Component);
-
-  function Progcard() {
-    _classCallCheck(this, Progcard);
-
-    return _possibleConstructorReturn(this, (Progcard.__proto__ || Object.getPrototypeOf(Progcard)).apply(this, arguments));
-  }
-
-  _createClass(Progcard, [{
-    key: 'render',
-    value: function render() {
-      var dateToString = this.props.data.dateCreate + '';
-      var dateReplace = dateToString.slice(0, 10);
-
-      var buttonStyle = _defineProperty({
-        border: '1px solid #FFFFFF',
-        color: '#FFFFFF',
-        padding: '1px 5px',
-        fontSize: '12px',
-        fontFamily: 'Mallanna, sans-serif',
-        position: 'relative',
-        left: '15px'
-      }, 'border', '1px solid black');
-
-      return _react2.default.createElement(
-        'li',
-        { className: 'list-group-item' },
-        _react2.default.createElement(
-          'div',
-          { className: 'card' },
-          _react2.default.createElement(
-            'div',
-            { className: 'card-header' },
-            _react2.default.createElement(
-              'div',
-              { className: 'row' },
-              _react2.default.createElement(
-                'div',
-                { className: 'col-sm-4 text-center' },
-                this.props.data.progressTitle
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'col-sm-4 text-center' },
-                dateReplace
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'col-sm-4 text-center' },
-                _react2.default.createElement(
-                  'button',
-                  { className: 'btn btn-danger btn-sm', style: buttonStyle },
-                  'x'
-                )
-              )
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'card-body' },
-            _react2.default.createElement(
-              'div',
-              { className: 'row' },
-              _react2.default.createElement(
-                'div',
-                { className: 'col-sm-12 text-left' },
-                this.props.data.progressBody
-              )
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return Progcard;
-}(_react.Component);
-
-exports.default = Progcard;
 
 /***/ })
 /******/ ]);
